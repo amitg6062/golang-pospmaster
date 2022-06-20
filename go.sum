@@ -3,6 +3,8 @@ github.com/Azure/azure-sdk-for-go/sdk/azidentity v0.11.0/go.mod h1:HcM1YX14R7CJc
 github.com/Azure/azure-sdk-for-go/sdk/internal v0.7.0/go.mod h1:yqy467j36fJxcRV2TzfVZ1pCb5vxm4BtZPUdYWe/Xo8=
 github.com/amitg6062/golang-posp-dbconnection v0.0.0-20220620092217-a177d4816d68 h1:D28czH1devjuJeKVzQ+ZxiWTOnMM7ACn5sSpWZ74hC4=
 github.com/amitg6062/golang-posp-dbconnection v0.0.0-20220620092217-a177d4816d68/go.mod h1:e+5rTB8AcYZ00FIKQZWLxxv8C/MjneT+VeNkLyLjeoE=
+github.com/amitg6062/golang-posp-jwtMiddleware v0.0.0-20220620093036-49e04504bb11 h1:o9vupthCnLLSdgU29/yYWtoq179shWd/b+6/49RIGdI=
+github.com/amitg6062/golang-posp-jwtMiddleware v0.0.0-20220620093036-49e04504bb11/go.mod h1:0Nr9tkFltKJHIcXHSM7zljYqF3VnPGvsV1Tdf/3BPMk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

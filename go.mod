@@ -15,6 +15,7 @@ require (
 )
 
 require (
+	github.com/amitg6062/golang-posp-jwtMiddleware v0.0.0-20220620093036-49e04504bb11 // indirect
 	github.com/felixge/httpsnoop v1.0.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect

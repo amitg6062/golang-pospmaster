@@ -10,9 +10,10 @@ import (
 	"gopkg.in/go-playground/validator.v9"
 
 	// "posp_api_go_v2/src/lib"
-	jwtauth "posp_api_go_v2/src/middleware/jwtAuth"
+	// jwtauth "posp_api_go_v2/src/middleware/jwtAuth"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
+	jwtauth "github.com/amitg6062/golang-posp-jwtMiddleware"
 )
 
 func CallAmit(w http.ResponseWriter, r *http.Request) {

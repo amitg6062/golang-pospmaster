@@ -3,7 +3,10 @@ package rnd
 import (
 	"fmt"
 	"net/http"
-	jwtauth "posp_api_go_v2/src/middleware/jwtAuth"
+
+	// jwtauth "posp_api_go_v2/src/middleware/jwtAuth"
+
+	jwtauth "github.com/amitg6062/golang-posp-jwtMiddleware"
 
 	"github.com/gorilla/mux"
 )
