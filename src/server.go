@@ -3,8 +3,10 @@ package api
 import (
 	"fmt"
 	"log"
-	"posp_api_go_v2/src/lib"
 
+	// "posp_api_go_v2/src/lib"
+
+	lib "github.com/amitg6062/golang-posp-dbconnection"
 	"github.com/joho/godotenv"
 )
 

@@ -3,6 +3,7 @@ module posp_api_go_v2
 go 1.18
 
 require (
+	github.com/amitg6062/golang-posp-dbconnection v0.0.0-20220620092217-a177d4816d68
 	github.com/ddadumitrescu/hellomod v1.0.0
 	github.com/denisenkom/go-mssqldb v0.12.2
 	github.com/golang-jwt/jwt v3.2.2+incompatible

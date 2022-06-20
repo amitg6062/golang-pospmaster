@@ -9,7 +9,9 @@ import (
 	"github.com/gorilla/mux"
 	"gopkg.in/go-playground/validator.v9"
 
-	"posp_api_go_v2/src/lib"
+	// "posp_api_go_v2/src/lib"
+
+	lib "github.com/amitg6062/golang-posp-dbconnection"
 )
 
 func CallAmit(w http.ResponseWriter, r *http.Request) {
