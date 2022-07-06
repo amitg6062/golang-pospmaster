@@ -72,7 +72,7 @@ func CreateExcel(data []Emp) {
 	for i := 0; i < len(data); i = i + 1000 {
 		fmt.Println(i)
 		// wg.Add(1)
-		go SetRowValue(data[i:i+1000], f, ch, i)
+		SetRowValue(data[i:i+1000], f, ch, i)
 		// go SetRowValue(data[i:i+10], f, ch, i)
 
 	}
