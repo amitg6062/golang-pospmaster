@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
+	"posp_api_go_v2/src/services/exportExcel"
 	"posp_api_go_v2/src/services/reports"
 	"posp_api_go_v2/src/services/rnd"
 )
@@ -21,6 +22,9 @@ func initializeRouter() {
 
 	//Rnd Package Router
 	mount(r, "/api/rnd", rnd.Router())
+
+	//Export Excel Package Router
+	mount(r, "/api/ee", exportExcel.Router())
 
 	//Start Server at a port
 	RunServer(r)
