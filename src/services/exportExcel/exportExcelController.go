@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strconv"
+	"sync"
 	"time"
 
 	"github.com/xuri/excelize/v2"
@@ -59,10 +60,12 @@ func checkErr(err error) {
 // 	fmt.Println("")
 // }
 
+// var mu sync.Mutex
+
 func CreateExcel(data []Emp) {
 
-	// wg := &sync.WaitGroup{}
 	// mu := &sync.RWMutex{}
+	var wg sync.WaitGroup
 	f := excelize.NewFile()
 	Sheet1 := "Sheet1"
 	index := f.NewSheet(Sheet1)
@@ -71,12 +74,13 @@ func CreateExcel(data []Emp) {
 
 	for i := 0; i < len(data); i = i + 1000 {
 		fmt.Println(i)
-		// wg.Add(1)
-		SetRowValue(data[i:i+1000], f, ch, i)
+		wg.Add(1)
+		go SetRowValue(data[i:i+1000], f, ch, wg, i)
 		// go SetRowValue(data[i:i+10], f, ch, i)
 
 	}
-	// wg.Wait()
+
+	wg.Wait()
 
 	//SetRowValue(data, f, ch)
 
@@ -86,8 +90,10 @@ func CreateExcel(data []Emp) {
 
 }
 
-func SetRowValue(data []Emp, f *excelize.File, ch chan *excelize.File, index int) {
+func SetRowValue(data []Emp, f *excelize.File, ch chan *excelize.File, wg sync.WaitGroup, index int) {
 	// mu.Lock()
+	defer wg.Done()
+	// defer mu.Unlock()
 	// index := 0
 	for _, v := range data {
 		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "A"+strconv.Itoa(index), v.Id)
@@ -98,8 +104,5 @@ func SetRowValue(data []Emp, f *excelize.File, ch chan *excelize.File, index int
 		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "F"+strconv.Itoa(index), v.IsActive.String)
 		index++
 	}
-	// defer mu.Unlock()
-	// defer wg.Done()
-
-	//ch <- f
+	// time.Sleep(time.Second)
 }
