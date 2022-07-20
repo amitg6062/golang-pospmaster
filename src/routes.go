@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
+	"posp_api_go_v2/src/services/dbo/getAgentListById"
 	"posp_api_go_v2/src/services/exportExcel"
 	"posp_api_go_v2/src/services/reports"
 	"posp_api_go_v2/src/services/rnd"
@@ -25,6 +26,10 @@ func initializeRouter() {
 
 	//Export Excel Package Router
 	mount(r, "/api/ee", exportExcel.Router())
+
+	//getAgentListById Package Router
+	//mount(r, "/api/getAgentListById", getAgentListById.Router())
+	r.HandleFunc("/api/getAgentListById", getAgentListById.CallAmit).Methods("POST")
 
 	//Start Server at a port
 	RunServer(r)

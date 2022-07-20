@@ -6,6 +6,7 @@ require (
 	github.com/amitg6062/golang-posp-dbconnection v0.0.0-20220620092217-a177d4816d68
 	github.com/amitg6062/golang-posp-jwtMiddleware v0.2.0
 	github.com/ddadumitrescu/hellomod v1.0.0
+	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/joho/godotenv v1.4.0
