@@ -9,6 +9,8 @@ import (
 	"github.com/gorilla/mux"
 
 	"posp_api_go_v2/src/services/dbo/getAgentListById"
+	"posp_api_go_v2/src/services/dbo/insertUpdateBmsBookingDetails"
+	"posp_api_go_v2/src/services/dbo/insertUpdateBmsLeadDetails"
 	"posp_api_go_v2/src/services/exportExcel"
 	"posp_api_go_v2/src/services/reports"
 	"posp_api_go_v2/src/services/rnd"
@@ -30,6 +32,10 @@ func initializeRouter() {
 	//getAgentListById Package Router
 	//mount(r, "/api/getAgentListById", getAgentListById.Router())
 	r.HandleFunc("/api/getAgentListById", getAgentListById.CallAmit).Methods("POST")
+
+	r.HandleFunc("/api/getAgentListById2", insertUpdateBmsBookingDetails.CallAmit2).Methods("POST")
+
+	r.HandleFunc("/api/insertUpdateBmsLeadDetails", insertUpdateBmsLeadDetails.HandleRequest).Methods("POST")
 
 	//Start Server at a port
 	RunServer(r)
