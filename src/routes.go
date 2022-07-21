@@ -33,9 +33,9 @@ func initializeRouter() {
 	//mount(r, "/api/getAgentListById", getAgentListById.Router())
 	r.HandleFunc("/api/getAgentListById", getAgentListById.CallAmit).Methods("POST")
 
-	r.HandleFunc("/api/getAgentListById2", insertUpdateBmsBookingDetails.CallAmit2).Methods("POST")
-
 	r.HandleFunc("/api/insertUpdateBmsLeadDetails", insertUpdateBmsLeadDetails.HandleRequest).Methods("POST")
+
+	r.HandleFunc("/api/insertUpdateBmsBookingDetails", insertUpdateBmsBookingDetails.HandleRequest).Methods("POST")
 
 	//Start Server at a port
 	RunServer(r)
