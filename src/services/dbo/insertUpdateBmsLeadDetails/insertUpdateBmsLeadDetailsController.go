@@ -3,12 +3,13 @@ package insertUpdateBmsLeadDetails
 import (
 	"database/sql"
 	"fmt"
-	"log"
+
+	hf "github.com/amitg6062/golang-posp-helpers"
 )
 
 func ReadData(db *sql.DB, requestParam RequestParam) JsonResponse {
 	//Handle panic condition
-	defer deferring()
+	defer hf.Deferring()
 
 	tsql := fmt.Sprint("EXEC [dbo].[InsertUpdateAffiliateLeadDetails] ")
 
@@ -50,57 +51,16 @@ func ReadData(db *sql.DB, requestParam RequestParam) JsonResponse {
 
 	rows, err := db.Query(tsql)
 	if err != nil {
-		log.Fatal(err)
+		hf.CheckErr(err)
 	}
 	defer rows.Close()
-	cols, _ := rows.Columns()
 
+	//Scan Rows and Get Response in interface.
 	ret := make([]map[string]interface{}, 0)
-	for rows.Next() {
-		colVals := make([]interface{}, len(cols))
-		for i := range colVals {
-			colVals[i] = new(interface{})
-		}
-		err = rows.Scan(colVals...)
-		if err != nil {
-			log.Fatal(err)
-		}
-		colNames, err := rows.Columns()
-		if err != nil {
-			log.Fatal(err)
-		}
-		these := make(map[string]interface{})
-		for idx, name := range colNames {
-			these[name] = *colVals[idx].(*interface{})
-		}
-		ret = append(ret, these)
-	}
-	if err = rows.Err(); err != nil {
-		log.Fatal(err)
-	}
+	ret = hf.GetDBResponse(rows, ret)
 
 	var response = JsonResponse{Error: false, Data: ret}
 
 	return response
 
-}
-
-// Function for handling errors
-func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-
-// Function for handling messages
-func printMessage(message string) {
-	fmt.Println("")
-	fmt.Println(message)
-	fmt.Println("")
-}
-
-func deferring() {
-	if err := recover(); err != nil {
-		fmt.Println("An error occurred:", err)
-	}
 }

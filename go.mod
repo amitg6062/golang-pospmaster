@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/amitg6062/golang-posp-dbconnection v0.0.0-20220620092217-a177d4816d68
-	github.com/amitg6062/golang-posp-helpers v0.0.0-20220725082011-c1441ff442ac
+	github.com/amitg6062/golang-posp-helpers v0.0.0-20220725082841-baabff42a503
 	github.com/amitg6062/golang-posp-jwtMiddleware v0.2.0
 	github.com/ddadumitrescu/hellomod v1.0.0
 	github.com/go-playground/validator v9.31.0+incompatible

@@ -3,7 +3,6 @@ package partnerUpgrade
 import (
 	"database/sql"
 	"fmt"
-	"log"
 
 	hf "github.com/amitg6062/golang-posp-helpers"
 )
@@ -22,7 +21,7 @@ func ReadData(db *sql.DB, requestParam RequestParam) JsonResponse {
 
 	rows, err := db.Query(tsql)
 	if err != nil {
-		log.Fatal(err)
+		hf.CheckErr(err)
 	}
 	defer rows.Close()
 

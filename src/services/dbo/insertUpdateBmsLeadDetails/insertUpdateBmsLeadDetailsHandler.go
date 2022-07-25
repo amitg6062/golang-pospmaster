@@ -6,13 +6,14 @@ import (
 	"net/http"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
+	hf "github.com/amitg6062/golang-posp-helpers"
 	"github.com/go-playground/validator"
 )
 
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//Handle panic condition
-	defer deferring()
+	defer hf.Deferring()
 
 	var response JsonResponse
 
@@ -40,6 +41,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 
 	} else {
 		Conn := lib.InitialMigration()
+		defer Conn.Close()
 		response = ReadData(Conn, requestParam)
 	}
 

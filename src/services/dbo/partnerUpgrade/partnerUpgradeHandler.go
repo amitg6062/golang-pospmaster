@@ -35,6 +35,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	Conn := lib.InitialMigration()
+	defer Conn.Close()
 	response = ReadData(Conn, requestParam)
 
 	json.NewEncoder(w).Encode(response)
