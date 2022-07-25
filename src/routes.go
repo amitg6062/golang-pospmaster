@@ -11,6 +11,7 @@ import (
 	"posp_api_go_v2/src/services/dbo/getAgentListById"
 	"posp_api_go_v2/src/services/dbo/insertUpdateBmsBookingDetails"
 	"posp_api_go_v2/src/services/dbo/insertUpdateBmsLeadDetails"
+	"posp_api_go_v2/src/services/dbo/partnerUpgrade"
 	"posp_api_go_v2/src/services/exportExcel"
 	"posp_api_go_v2/src/services/reports"
 	"posp_api_go_v2/src/services/rnd"
@@ -36,6 +37,8 @@ func initializeRouter() {
 	r.HandleFunc("/api/insertUpdateBmsLeadDetails", insertUpdateBmsLeadDetails.HandleRequest).Methods("POST")
 
 	r.HandleFunc("/api/insertUpdateBmsBookingDetails", insertUpdateBmsBookingDetails.HandleRequest).Methods("POST")
+
+	r.HandleFunc("/api/partnerUpgrade", partnerUpgrade.HandleRequest).Methods("POST")
 
 	//Start Server at a port
 	RunServer(r)

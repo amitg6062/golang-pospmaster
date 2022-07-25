@@ -28,7 +28,7 @@ func CallAmit(w http.ResponseWriter, r *http.Request) {
 	// check errors
 	if err != nil {
 		ret := make([]map[string]interface{}, 0)
-		response = JsonResponse{Error: false, Data: ret, Message: err.Error()}
+		response = JsonResponse{Error: true, Data: ret, Message: err.Error()}
 
 	} else {
 		Conn := lib.InitialMigration()

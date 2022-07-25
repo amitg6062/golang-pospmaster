@@ -29,7 +29,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	// check for validation
 	if err != nil {
 		ret := make([]map[string]interface{}, 0)
-		response = JsonResponse{Error: false, Data: ret, Message: err.Error()}
+		response = JsonResponse{Error: true, Data: ret, Message: err.Error()}
 		json.NewEncoder(w).Encode(response)
 		return
 	}

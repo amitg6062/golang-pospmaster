@@ -1,4 +1,4 @@
-package insertUpdateBmsLeadDetails
+package partnerUpgrade
 
 import (
 	"encoding/json"
@@ -6,13 +6,14 @@ import (
 	"net/http"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
+	hf "github.com/amitg6062/golang-posp-helpers"
 	"github.com/go-playground/validator"
 )
 
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//Handle panic condition
-	defer deferring()
+	defer hf.Deferring()
 
 	var response JsonResponse
 
@@ -33,15 +34,8 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if requestParam.Utm_source != "OnlineAffiliate" {
-
-		ret := make([]map[string]interface{}, 0)
-		response = JsonResponse{Error: false, Data: ret, Message: "Bypass"}
-
-	} else {
-		Conn := lib.InitialMigration()
-		response = ReadData(Conn, requestParam)
-	}
+	Conn := lib.InitialMigration()
+	response = ReadData(Conn, requestParam)
 
 	json.NewEncoder(w).Encode(response)
 
