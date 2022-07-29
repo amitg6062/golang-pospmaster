@@ -53,13 +53,6 @@ func checkErr(err error) {
 	}
 }
 
-// Function for handling messages
-// func printMessage(message string) {
-// 	fmt.Println("")
-// 	fmt.Println(message)
-// 	fmt.Println("")
-// }
-
 // var mu sync.Mutex
 
 func CreateExcel(data []Emp) {

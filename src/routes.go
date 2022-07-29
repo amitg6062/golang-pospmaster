@@ -13,6 +13,7 @@ import (
 	"posp_api_go_v2/src/services/dbo/insertUpdateBmsLeadDetails"
 	"posp_api_go_v2/src/services/dbo/partnerUpgrade"
 	"posp_api_go_v2/src/services/exportExcel"
+	"posp_api_go_v2/src/services/report/getBookingListDumpV1"
 	"posp_api_go_v2/src/services/reports"
 	"posp_api_go_v2/src/services/rnd"
 )
@@ -30,15 +31,14 @@ func initializeRouter() {
 	//Export Excel Package Router
 	mount(r, "/api/ee", exportExcel.Router())
 
-	//getAgentListById Package Router
-	//mount(r, "/api/getAgentListById", getAgentListById.Router())
+	//dbo schema
 	r.HandleFunc("/api/getAgentListById", getAgentListById.CallAmit).Methods("POST")
-
 	r.HandleFunc("/api/insertUpdateBmsLeadDetails", insertUpdateBmsLeadDetails.HandleRequest).Methods("POST")
-
 	r.HandleFunc("/api/insertUpdateBmsBookingDetails", insertUpdateBmsBookingDetails.HandleRequest).Methods("POST")
-
 	r.HandleFunc("/api/partnerUpgrade", partnerUpgrade.HandleRequest).Methods("POST")
+
+	//report schema
+	r.HandleFunc("/api/getBookingListDumpV1", getBookingListDumpV1.HandleRequest).Methods("POST")
 
 	//Start Server at a port
 	RunServer(r)
