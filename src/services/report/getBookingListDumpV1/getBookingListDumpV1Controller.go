@@ -3,6 +3,7 @@ package getBookingListDumpV1
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 	"time"
 
 	hf "github.com/amitg6062/golang-posp-helpers"
@@ -105,15 +106,16 @@ func CreateExcel(data []dict) {
 	//SetRowValue(data, f)
 	itr := 0
 
-	for position, v := range data {
-		println(position, v, v.d("args").s("LeadId"))
+	for _, v := range data {
+		// fmt.Println(v["LeadId"])
+		//println(position, v, v.d("args").s("LeadId"))
 		// println(position, v, v.d("args").s("LeadId"))
-		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "A"+strconv.Itoa(itr), v.LeadId)
-		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "B"+strconv.Itoa(itr), v.InsuredName.String)
-		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "C"+strconv.Itoa(itr), v.Dob)
-		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "D"+strconv.Itoa(index), v.ApplicationNo)
-		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "E"+strconv.Itoa(index), v.BasicPremium)
-		// f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "F"+strconv.Itoa(index), v.IsActive.String)
+		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "A"+strconv.Itoa(itr), v["LeadId"])
+		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "B"+strconv.Itoa(itr), v["InsuredName"])
+		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "C"+strconv.Itoa(itr), v["ApplicationNo"])
+		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "D"+strconv.Itoa(itr), v["LeadDate"])
+		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "E"+strconv.Itoa(itr), v["BusinessType"])
+		f.SetCellValue(f.GetSheetName(f.GetActiveSheetIndex()), "F"+strconv.Itoa(itr), v["Circle"])
 		itr++
 	}
 
