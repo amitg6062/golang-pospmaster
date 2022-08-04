@@ -42,6 +42,6 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	// json.NewEncoder(w).Encode(outputData)
 
 	response = ReadData(Conn, requestParam)
-	json.NewEncoder(w).Encode(response)
+	//json.NewEncoder(w).Encode(response)
 
 }
