@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
-	"posp_api_go_v2/src/services/dbo/getAgentListById"
+	//"posp_api_go_v2/src/services/dbo/getAgentListById"
 	"posp_api_go_v2/src/services/dbo/insertUpdateBmsBookingDetails"
 	"posp_api_go_v2/src/services/dbo/insertUpdateBmsLeadDetails"
 	"posp_api_go_v2/src/services/dbo/partnerUpgrade"
@@ -32,7 +32,7 @@ func initializeRouter() {
 	mount(r, "/api/ee", exportExcel.Router())
 
 	//dbo schema
-	r.HandleFunc("/api/getAgentListById", getAgentListById.CallAmit).Methods("POST")
+	//	r.HandleFunc("/api/getAgentListById", getAgentListById.CallAmit).Methods("POST")
 	r.HandleFunc("/api/insertUpdateBmsLeadDetails", insertUpdateBmsLeadDetails.HandleRequest).Methods("POST")
 	r.HandleFunc("/api/insertUpdateBmsBookingDetails", insertUpdateBmsBookingDetails.HandleRequest).Methods("POST")
 	r.HandleFunc("/api/partnerUpgrade", partnerUpgrade.HandleRequest).Methods("POST")

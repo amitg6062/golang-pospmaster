@@ -1,6 +1,6 @@
 module posp_api_go_v2
 
-go 1.18
+go 1.16
 
 require (
 	github.com/amitg6062/golang-posp-dbconnection v0.0.0-20220620092217-a177d4816d68

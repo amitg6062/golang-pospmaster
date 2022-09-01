@@ -38,14 +38,14 @@ type OutputData struct {
 	ChatStatus       sql.NullString `json:"ChatStatus"`
 	Circle           sql.NullString `json:"Circle"`
 	City             sql.NullString `json:"City"`
-	CubicCapacity    sql.NullInt16  `json:"CubicCapacity"`
-	CustomerID       sql.NullInt16  `json:"CustomerId"`
+	CubicCapacity    sql.NullInt32  `json:"CubicCapacity"`
+	CustomerID       sql.NullInt32  `json:"CustomerId"`
 	Discount         sql.NullString `json:"Discount"`
 	FuleType         sql.NullString `json:"FuleType"`
 	Istp             bool           `json:"ISTP"`
-	InstallmentsPaid sql.NullInt16  `json:"InstallmentsPaid"`
+	InstallmentsPaid sql.NullInt32  `json:"InstallmentsPaid"`
 
-	IsE2E           sql.NullInt16 `json:"IsE2E"`
+	IsE2E           sql.NullInt32 `json:"IsE2E"`
 	IssuanceRejDate time.Time     `json:"Issuance/Rej Date"`
 	LeadDate        time.Time     `json:"LeadDate"`
 
@@ -53,22 +53,22 @@ type OutputData struct {
 	MakeName      sql.NullString `json:"MakeName"`
 	MaritalStatus sql.NullString `json:"MaritalStatus"`
 	// NetPremium             sql.NullString `json:"NetPremium"`
-	NoOfSeats              sql.NullInt16  `json:"NoOfSeats"`
-	Noofwheels             sql.NullInt16  `json:"Noofwheels"`
-	ODPremium              sql.NullInt16  `json:"ODPremium"`
+	NoOfSeats              sql.NullInt32  `json:"NoOfSeats"`
+	Noofwheels             sql.NullInt32  `json:"Noofwheels"`
+	ODPremium              sql.NullInt32  `json:"ODPremium"`
 	PGType                 sql.NullString `json:"PGType"`
 	ParentID               sql.NullString `json:"ParentId"`
 	ParentLeadCreationDate sql.NullString `json:"ParentLeadCreationDate"`
 	ParentLeadSource       sql.NullString `json:"ParentLeadSource"`
 	PartnerID              sql.NullString `json:"PartnerId"`
 	PaymentPeriodicity     sql.NullString `json:"PaymentPeriodicity"`
-	PaymentSubStatus       sql.NullInt16  `json:"PaymentSubStatus"`
+	PaymentSubStatus       sql.NullInt32  `json:"PaymentSubStatus"`
 	PersonalAccidentCover  sql.NullString `json:"PersonalAccidentCover"`
-	PinCode                sql.NullInt16  `json:"PinCode"`
+	PinCode                sql.NullInt32  `json:"PinCode"`
 	PlanName               sql.NullString `json:"PlanName"`
 	PolicyNo               sql.NullString `json:"PolicyNo"`
 	PolicyType             sql.NullString `json:"PolicyType"`
-	Premium                sql.NullInt16  `json:"Premium"`
+	Premium                sql.NullInt32  `json:"Premium"`
 	Product                sql.NullString `json:"Product"`
 	RMCode                 sql.NullString `json:"RMCode"`
 	RMName                 sql.NullString `json:"RMName"`
@@ -85,9 +85,9 @@ type OutputData struct {
 	UtmSource              sql.NullString `json:"Utm_source"`
 	UtmTerm                sql.NullString `json:"Utm_term"`
 	VechicleCarrier        sql.NullString `json:"VechicleCarrier"`
-	VehicleAge             sql.NullInt16  `json:"VehicleAge"`
+	VehicleAge             sql.NullInt32  `json:"VehicleAge"`
 	VehicleModelName       sql.NullString `json:"VehicleModelName"`
 	VehicleSubClass        sql.NullString `json:"VehicleSubClass"`
-	Grossvehicleweight     sql.NullInt16  `json:"grossvehicleweight"`
+	Grossvehicleweight     sql.NullInt32  `json:"grossvehicleweight"`
 	KaliPili               sql.NullString `json:"kaliPili"`
 }
