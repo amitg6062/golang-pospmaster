@@ -6,6 +6,7 @@ WORKDIR /app
 # Download Go modules
 COPY go.mod .
 COPY go.sum .
+COPY [".env","go.sum"]
 RUN go mod download
 
 # Copy the source code. Note the slash at the end, as explained in
@@ -13,7 +14,6 @@ RUN go mod download
 COPY ./ ./
 
 RUN go mod tidy
-RUN go get database/sql
 
 # Build
 RUN go build -o /posp_api_go_v2
