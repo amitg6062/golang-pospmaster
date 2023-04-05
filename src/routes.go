@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/gin-gonic/gin"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
@@ -68,4 +69,19 @@ func RunServer(r *mux.Router) {
 				"HEAD",
 				"OPTIONS"}),
 			handlers.AllowedOrigins([]string{"*"}))(r)))
+}
+
+func setupRouter() *gin.Engine {
+	// Disable Console Color
+	// gin.DisableConsoleColor()
+	r := gin.Default()
+
+	// Ping test
+	r.GET("/ping", func(c *gin.Context) {
+		c.String(http.StatusOK, "pong")
+	})
+	// r.HandleFunc("/users/{id}", GetUsers).Methods("GET")
+	r.GET("/api/rnd/users/:id", GetUsers)
+
+	return r
 }
