@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetQuotesFilterDetailsHandler(c *gin.Context) {
+func ListFinancialGoalsQuotes(c *gin.Context) {
 
 	var requestBody interface{}
 	var response h.JsonResponse
@@ -22,13 +22,13 @@ func GetQuotesFilterDetailsHandler(c *gin.Context) {
 		return
 	}
 
-	response = Service_getQuotesFilterDetailsHandler(requestBody)
+	response = Service_listFinancialGoalsQuotes(requestBody)
 
 	c.JSON(200, response)
 
 }
 
-func Service_getQuotesFilterDetailsHandler(requestBody interface{}) h.JsonResponse {
+func Service_listFinancialGoalsQuotes(requestBody interface{}) h.JsonResponse {
 
 	fmt.Println("nested data")
 	fmt.Println(requestBody)
@@ -42,7 +42,7 @@ func Service_getQuotesFilterDetailsHandler(requestBody interface{}) h.JsonRespon
 
 	GoalId := requestMap["GoalId"]
 
-	tsql := fmt.Sprint("EXEC [finance].[QuotesFilterDetails] @GoalId=?")
+	tsql := fmt.Sprint("EXEC [finance].[ListFinancialGoalsQuotes] @GoalId=?")
 	rows, err := db.Query(tsql, GoalId)
 
 	if err != nil {

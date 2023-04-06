@@ -19,15 +19,11 @@ func setupRouter() *gin.Engine {
 		c.String(http.StatusOK, "pong")
 	})
 
-	// // Monolithic
-	r.GET("/api/rnd/users/:id", GetUsers)
+	r.POST("/lead/insertUpdateAffiliateLeadDetails", dbo.InsertUpdateAffiliateLeadDetails)
 
-	// // microservice
-	r.GET("/api/rnd/users2/:id", GetUsers2)
+	r.POST("/getQuotesFilterDetails", finance.GetQuotesFilterDetailsHandler)
 
-	r.POST("/lead/insertUpdateAffiliateLeadDetails2", dbo.Handler_insertUpdateAffiliateLeadDetails)
-
-	r.POST("/getQuotesFilterDetails", finance.Handler_getQuotesFilterDetailsHandler)
+	r.POST("/listFinancialGoalsQuotes", finance.ListFinancialGoalsQuotes)
 
 	return r
 }

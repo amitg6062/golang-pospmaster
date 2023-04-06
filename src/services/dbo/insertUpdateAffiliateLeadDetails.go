@@ -50,7 +50,7 @@ type model_insertUpdateAffiliateLeadDetails struct {
 	PrevPolicyNo             string `json:"PrevPolicyNo"`
 }
 
-func Handler_insertUpdateAffiliateLeadDetails(c *gin.Context) {
+func InsertUpdateAffiliateLeadDetails(c *gin.Context) {
 
 	body, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
@@ -70,10 +70,7 @@ func Handler_insertUpdateAffiliateLeadDetails(c *gin.Context) {
 
 	response = modelstruct.Service_insertUpdateAffiliateLeadDetails()
 
-	c.JSON(200, gin.H{
-		"message":  "User created successfully!",
-		"response": response,
-	})
+	c.JSON(200, response)
 
 }
 
