@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	api "posp_api_go_v2/src/services"
 	dbo "posp_api_go_v2/src/services/dbo"
+	finance "posp_api_go_v2/src/services/finance"
 )
 
 func setupRouter() *gin.Engine {
@@ -26,7 +26,8 @@ func setupRouter() *gin.Engine {
 	r.GET("/api/rnd/users2/:id", GetUsers2)
 
 	r.POST("/lead/insertUpdateAffiliateLeadDetails2", dbo.Handler_insertUpdateAffiliateLeadDetails)
-	r.POST("/getQuotesFilterDetails", api.Handler_getQuotesFilterDetailsHandler)
+
+	r.POST("/getQuotesFilterDetails", finance.Handler_getQuotesFilterDetailsHandler)
 
 	return r
 }
