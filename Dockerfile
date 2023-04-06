@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine
+FROM golang:1.17-alpine
 
 # Set destination for COPY
 WORKDIR /app
@@ -21,7 +21,7 @@ RUN go build -o /posp_api_go_v2
 # This is for documentation purposes only.
 # To actually open the port, runtime parameters
 # must be supplied to the docker command.
-EXPOSE 9000
+EXPOSE 8081
 
 # (Optional) environment variable that our dockerised
 # application can make use of. The value of environment

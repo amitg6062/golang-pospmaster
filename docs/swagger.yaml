@@ -1,0 +1,39 @@
+definitions:
+  helpers.JsonResponse:
+    properties:
+      data:
+        items:
+          additionalProperties: true
+          type: object
+        type: array
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /getQuotesFilterDetails:
+    post:
+      consumes:
+      - application/json
+      description: Get filter details for quotes based on a goal ID
+      operationId: get-quotes-filter-details
+      parameters:
+      - description: "1"
+        in: path
+        name: GoalId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.JsonResponse'
+      summary: Get filter details for quotes
+      tags:
+      - quotes
+swagger: "2.0"

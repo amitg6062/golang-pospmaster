@@ -10,6 +10,26 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type FilterDetailsRequest struct {
+	// GoalId is the ID of the goal to filter quotes by
+	// Example: 1
+	GoalId int `json:"GoalId" binding:"required"`
+}
+
+// FilterDetailsResponse represents the response body for the getQuotesFilterDetails endpoint
+type FilterDetailsResponse struct {
+	// Your response fields here
+}
+
+// @Summary Get filter details for quotes
+// @Description Get filter details for quotes based on a goal ID
+// @Tags quotes
+// @ID get-quotes-filter-details
+// @Accept json
+// @Produce json
+// @Param   GoalId   path      int  true  "1"
+// @Success 200 {object} h.JsonResponse
+// @Router /getQuotesFilterDetails [post]
 func GetQuotesFilterDetailsHandler(c *gin.Context) {
 
 	var requestBody interface{}
