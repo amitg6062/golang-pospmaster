@@ -10,7 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/// 2nd api
 func Handler_getQuotesFilterDetailsHandler(c *gin.Context) {
 
 	var requestBody interface{}
