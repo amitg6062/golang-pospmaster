@@ -35,5 +35,219 @@ paths:
             $ref: '#/definitions/helpers.JsonResponse'
       summary: Get filter details for quotes
       tags:
-      - quotes
+      - finance
+  /lead/insertUpdateAffiliateLeadDetails:
+    post:
+      description: InsertUpdateAffiliateLeadDetails
+      operationId: InsertUpdateAffiliateLeadDetails
+      parameters:
+      - description: Lead ID
+        in: body
+        name: LeadID
+        required: true
+        schema:
+          type: integer
+      - description: Session ID
+        in: body
+        name: SessionID
+        required: true
+        schema:
+          type: integer
+      - description: Name of the lead
+        in: body
+        name: Name
+        required: true
+        schema:
+          type: string
+      - description: Position Type
+        in: body
+        name: PosType
+        required: true
+        schema:
+          type: integer
+      - description: Gender of the lead
+        in: body
+        name: Gender
+        schema:
+          type: string
+      - description: Mobile number of the lead
+        in: body
+        name: MobileNo
+        schema:
+          type: string
+      - description: Alternate phone number of the lead
+        in: body
+        name: AltPhoneNo
+        schema:
+          type: string
+      - description: Email ID of the lead
+        in: body
+        name: EmailID
+        schema:
+          type: string
+      - description: Address of the lead
+        in: body
+        name: Address
+        schema:
+          type: string
+      - description: City ID
+        in: body
+        name: CityID
+        schema:
+          type: integer
+      - description: State ID
+        in: body
+        name: StateID
+        schema:
+          type: integer
+      - description: Postal code
+        in: body
+        name: PostCode
+        schema:
+          type: string
+      - description: Country
+        in: body
+        name: Country
+        schema:
+          type: string
+      - description: Marital status
+        in: body
+        name: MaritalStatus
+        schema:
+          type: string
+      - description: Annual income of the lead
+        in: body
+        name: AnnualIncome
+        schema:
+          type: integer
+      - description: Highest booking step
+        in: body
+        name: HighestBookingStep
+        schema:
+          type: integer
+      - description: Referral ID
+        in: body
+        name: ReferralId
+        schema:
+          type: integer
+      - description: Exit point URL
+        in: body
+        name: ExitPointURL
+        schema:
+          type: string
+      - description: UTM source
+        in: body
+        name: Utm_source
+        schema:
+          type: string
+      - description: UTM medium
+        in: body
+        name: UTM_Medium
+        schema:
+          type: string
+      - description: UTM term
+        in: body
+        name: Utm_term
+        schema:
+          type: string
+      - description: UTM campaign
+        in: body
+        name: Utm_campaign
+        schema:
+          type: string
+      - description: Product ID
+        in: body
+        name: ProductID
+        schema:
+          type: integer
+      - description: Customer ID
+        in: body
+        name: CustomerID
+        schema:
+          type: integer
+      - description: Has addon
+        in: body
+        name: HasAddon
+        schema:
+          type: boolean
+      - description: Date of birth of the lead
+        in: body
+        name: DateOfBirth
+        schema:
+          type: string
+      - description: Supplier ID
+        in: body
+        name: SupplierId
+        schema:
+          type: integer
+      - description: Plan ID
+        in: body
+        name: PlanId
+        schema:
+          type: integer
+      - description: Supplier name
+        in: body
+        name: SupplierName
+        schema:
+          type: string
+      - description: Plan name
+        in: body
+        name: PlanName
+        schema:
+          type: string
+      - description: Enquiry ID
+        in: body
+        name: EnquiryId
+        schema:
+          type: integer
+      - description: Lead source
+        in: body
+        name: LeadSource
+        schema:
+          type: string
+      - description: Source
+        in: body
+        name: Source
+        schema:
+          type: string
+      - description: Previous policy expiry date
+        in: body
+        name: PreviousPolicyExpiryDate
+        schema:
+          type: string
+      - description: Previous policy number
+        in: body
+        name: PrevPolicyNo
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/helpers.JsonResponse'
+      summary: InsertUpdateAffiliateLeadDetails
+      tags:
+      - dbo
+  /listFinancialGoalsQuotes:
+    post:
+      consumes:
+      - application/json
+      description: ListFinancialGoalsQuotes
+      operationId: ListFinancialGoalsQuotes
+      parameters:
+      - description: "1"
+        in: path
+        name: GoalId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.JsonResponse'
+      summary: ListFinancialGoalsQuotes
+      tags:
+      - finance
 swagger: "2.0"

@@ -14,10 +14,347 @@
                     "application/json"
                 ],
                 "tags": [
-                    "quotes"
+                    "finance"
                 ],
                 "summary": "Get filter details for quotes",
                 "operationId": "get-quotes-filter-details",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "1",
+                        "name": "GoalId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.JsonResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/lead/insertUpdateAffiliateLeadDetails": {
+            "post": {
+                "description": "InsertUpdateAffiliateLeadDetails",
+                "tags": [
+                    "dbo"
+                ],
+                "summary": "InsertUpdateAffiliateLeadDetails",
+                "operationId": "InsertUpdateAffiliateLeadDetails",
+                "parameters": [
+                    {
+                        "description": "Lead ID",
+                        "name": "LeadID",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Session ID",
+                        "name": "SessionID",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Name of the lead",
+                        "name": "Name",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Position Type",
+                        "name": "PosType",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Gender of the lead",
+                        "name": "Gender",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mobile number of the lead",
+                        "name": "MobileNo",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Alternate phone number of the lead",
+                        "name": "AltPhoneNo",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Email ID of the lead",
+                        "name": "EmailID",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Address of the lead",
+                        "name": "Address",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "City ID",
+                        "name": "CityID",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "State ID",
+                        "name": "StateID",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Postal code",
+                        "name": "PostCode",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Country",
+                        "name": "Country",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Marital status",
+                        "name": "MaritalStatus",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Annual income of the lead",
+                        "name": "AnnualIncome",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Highest booking step",
+                        "name": "HighestBookingStep",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Referral ID",
+                        "name": "ReferralId",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Exit point URL",
+                        "name": "ExitPointURL",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "UTM source",
+                        "name": "Utm_source",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "UTM medium",
+                        "name": "UTM_Medium",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "UTM term",
+                        "name": "Utm_term",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "UTM campaign",
+                        "name": "Utm_campaign",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Product ID",
+                        "name": "ProductID",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Customer ID",
+                        "name": "CustomerID",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Has addon",
+                        "name": "HasAddon",
+                        "in": "body",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Date of birth of the lead",
+                        "name": "DateOfBirth",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Supplier ID",
+                        "name": "SupplierId",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Plan ID",
+                        "name": "PlanId",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Supplier name",
+                        "name": "SupplierName",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Plan name",
+                        "name": "PlanName",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Enquiry ID",
+                        "name": "EnquiryId",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Lead source",
+                        "name": "LeadSource",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Source",
+                        "name": "Source",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Previous policy expiry date",
+                        "name": "PreviousPolicyExpiryDate",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Previous policy number",
+                        "name": "PrevPolicyNo",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.JsonResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/listFinancialGoalsQuotes": {
+            "post": {
+                "description": "ListFinancialGoalsQuotes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "finance"
+                ],
+                "summary": "ListFinancialGoalsQuotes",
+                "operationId": "ListFinancialGoalsQuotes",
                 "parameters": [
                     {
                         "type": "integer",

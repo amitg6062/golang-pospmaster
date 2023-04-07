@@ -15,22 +15,21 @@ import (
 
 func setupRouter() *gin.Engine {
 
-	// gin.DisableConsoleColor()
-	r := gin.Default()
+	route := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
+	route.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "pong")
 	})
 
 	docs.SwaggerInfo.BasePath = ""
 
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	r.POST("/lead/insertUpdateAffiliateLeadDetails", dbo.InsertUpdateAffiliateLeadDetails)
+	route.POST("/lead/insertUpdateAffiliateLeadDetails", dbo.InsertUpdateAffiliateLeadDetails)
 
-	r.POST("/getQuotesFilterDetails", finance.GetQuotesFilterDetailsHandler)
+	route.POST("/getQuotesFilterDetails", finance.GetQuotesFilterDetailsHandler)
 
-	r.POST("/listFinancialGoalsQuotes", finance.ListFinancialGoalsQuotes)
+	route.POST("/listFinancialGoalsQuotes", finance.ListFinancialGoalsQuotes)
 
-	return r
+	return route
 }

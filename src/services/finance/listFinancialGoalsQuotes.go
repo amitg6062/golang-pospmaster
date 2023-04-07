@@ -4,16 +4,25 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	h "posp_api_go_v2/src/helpers"
+	"posp_api_go_v2/src/helpers"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary ListFinancialGoalsQuotes
+// @Description ListFinancialGoalsQuotes
+// @Tags finance
+// @ID ListFinancialGoalsQuotes
+// @Accept json
+// @Produce json
+// @Param   GoalId   path      int  true  "1"
+// @Success 200 {object} helpers.JsonResponse
+// @Router /listFinancialGoalsQuotes [post]
 func ListFinancialGoalsQuotes(c *gin.Context) {
 
 	var requestBody interface{}
-	var response h.JsonResponse
+	var response helpers.JsonResponse
 	// var response string
 
 	err := c.BindJSON(&requestBody)
@@ -28,7 +37,7 @@ func ListFinancialGoalsQuotes(c *gin.Context) {
 
 }
 
-func Service_listFinancialGoalsQuotes(requestBody interface{}) h.JsonResponse {
+func Service_listFinancialGoalsQuotes(requestBody interface{}) helpers.JsonResponse {
 
 	fmt.Println("nested data")
 	fmt.Println(requestBody)
@@ -50,9 +59,9 @@ func Service_listFinancialGoalsQuotes(requestBody interface{}) h.JsonResponse {
 	}
 	defer rows.Close()
 
-	ret := h.RenderData(rows)
+	ret := helpers.RenderData(rows)
 
-	var response = h.JsonResponse{Data: ret}
+	var response = helpers.JsonResponse{Data: ret}
 
 	return response
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	h "posp_api_go_v2/src/helpers"
+	"posp_api_go_v2/src/helpers"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
 	"github.com/gin-gonic/gin"
@@ -23,17 +23,17 @@ type FilterDetailsResponse struct {
 
 // @Summary Get filter details for quotes
 // @Description Get filter details for quotes based on a goal ID
-// @Tags quotes
+// @Tags finance
 // @ID get-quotes-filter-details
 // @Accept json
 // @Produce json
 // @Param   GoalId   path      int  true  "1"
-// @Success 200 {object} h.JsonResponse
+// @Success 200 {object} helpers.JsonResponse
 // @Router /getQuotesFilterDetails [post]
 func GetQuotesFilterDetailsHandler(c *gin.Context) {
 
 	var requestBody interface{}
-	var response h.JsonResponse
+	var response helpers.JsonResponse
 	// var response string
 
 	err := c.BindJSON(&requestBody)
@@ -48,7 +48,7 @@ func GetQuotesFilterDetailsHandler(c *gin.Context) {
 
 }
 
-func Service_getQuotesFilterDetailsHandler(requestBody interface{}) h.JsonResponse {
+func Service_getQuotesFilterDetailsHandler(requestBody interface{}) helpers.JsonResponse {
 
 	fmt.Println("nested data")
 	fmt.Println(requestBody)
@@ -57,7 +57,6 @@ func Service_getQuotesFilterDetailsHandler(requestBody interface{}) h.JsonRespon
 	// Use a type assertion to convert the interface to a map[string]interface{}
 	requestMap, ok := requestBody.(map[string]interface{})
 	if !ok {
-		// Handle the case where the interface doesn't represent a map[string]interface{}
 	}
 
 	GoalId := requestMap["GoalId"]
@@ -70,9 +69,9 @@ func Service_getQuotesFilterDetailsHandler(requestBody interface{}) h.JsonRespon
 	}
 	defer rows.Close()
 
-	ret := h.RenderData(rows)
+	ret := helpers.RenderData(rows)
 
-	var response = h.JsonResponse{Data: ret}
+	var response = helpers.JsonResponse{Data: ret}
 
 	return response
 

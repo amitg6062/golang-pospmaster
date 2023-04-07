@@ -93,3 +93,9 @@ func BuildErrorResponse(message string, err string, data interface{}) Response {
 
 	return res
 }
+
+func CheckErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
