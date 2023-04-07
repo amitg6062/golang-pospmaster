@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 
 	h "posp_api_go_v2/src/helpers"
 
@@ -50,7 +51,24 @@ type model_insertUpdateAffiliateLeadDetails struct {
 	PrevPolicyNo             string `json:"PrevPolicyNo"`
 }
 
+type ValidateAffiliateLeadDetail struct {
+	LeadID    int    `json:"LeadID" binding:"required"`
+	SessionID int    `json:"SessionID" binding:"required"`
+	Name      string `json:"Name" binding:"required"`
+	PosType   int    `json:"PosType" binding:"required"`
+}
+
 func InsertUpdateAffiliateLeadDetails(c *gin.Context) {
+
+	//	v := validator.New()
+
+	var validateAffiliateLeadDetail ValidateAffiliateLeadDetail
+	errDto := c.ShouldBind(&validateAffiliateLeadDetail)
+	if errDto != nil {
+		res := h.BuildErrorResponse("faild to process request", errDto.Error(), h.EmptyObj{})
+		c.JSON(http.StatusBadRequest, res)
+		return
+	}
 
 	body, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
