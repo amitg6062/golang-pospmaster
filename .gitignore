@@ -1,0 +1,12 @@
+*.exe
+*.o
+*.so
+.env
+*.test
+*_test.go
+vendor/
+.vscode/
+.idea/
+*.swp
+config.yml
+secrets.json

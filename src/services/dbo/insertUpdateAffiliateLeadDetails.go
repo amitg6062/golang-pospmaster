@@ -1,23 +1,21 @@
 package dbo
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 
-	h "posp_api_go_v2/src/helpers"
+	"posp_api_go_v2/src/helpers"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
 	"github.com/gin-gonic/gin"
 )
 
 type model_insertUpdateAffiliateLeadDetails struct {
-	LeadID                   int    `json:"LeadID"`
-	SessionID                int    `json:"SessionID"`
-	Name                     string `json:"Name"`
-	PosType                  int    `json:"PosType"`
+	LeadID                   int    `json:"LeadID" binding:"required"`
+	SessionID                int    `json:"SessionID" binding:"required"`
+	Name                     string `json:"Name" binding:"required"`
+	PosType                  int    `json:"PosType" binding:"required"`
 	Gender                   string `json:"Gender"`
 	MobileNo                 string `json:"MobileNo"`
 	AltPhoneNo               string `json:"AltPhoneNo"`
@@ -51,48 +49,24 @@ type model_insertUpdateAffiliateLeadDetails struct {
 	PrevPolicyNo             string `json:"PrevPolicyNo"`
 }
 
-type ValidateAffiliateLeadDetail struct {
-	LeadID    int    `json:"LeadID" binding:"required"`
-	SessionID int    `json:"SessionID" binding:"required"`
-	Name      string `json:"Name" binding:"required"`
-	PosType   int    `json:"PosType" binding:"required"`
-}
-
 func InsertUpdateAffiliateLeadDetails(c *gin.Context) {
 
-	//	v := validator.New()
-
-	var validateAffiliateLeadDetail ValidateAffiliateLeadDetail
-	errDto := c.ShouldBind(&validateAffiliateLeadDetail)
+	var modelstruct model_insertUpdateAffiliateLeadDetails
+	errDto := c.ShouldBind(&modelstruct)
 	if errDto != nil {
-		res := h.BuildErrorResponse("faild to process request", errDto.Error(), h.EmptyObj{})
+		res := helpers.BuildErrorResponse("faild to process request", errDto.Error(), helpers.EmptyObj{})
 		c.JSON(http.StatusBadRequest, res)
 		return
 	}
 
-	body, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		fmt.Println("error found", err)
-		// c.AbortWithStatus(400)
-		return
-	}
-
-	var modelstruct model_insertUpdateAffiliateLeadDetails
-	err = json.Unmarshal(body, &modelstruct)
-	if err != nil {
-		c.AbortWithStatus(400)
-		return
-	}
-
-	var response h.JsonResponse
-
+	var response helpers.JsonResponse
 	response = modelstruct.Service_insertUpdateAffiliateLeadDetails()
 
 	c.JSON(200, response)
 
 }
 
-func (data model_insertUpdateAffiliateLeadDetails) Service_insertUpdateAffiliateLeadDetails() h.JsonResponse {
+func (data model_insertUpdateAffiliateLeadDetails) Service_insertUpdateAffiliateLeadDetails() helpers.JsonResponse {
 	db := lib.InitialMigration()
 	fmt.Println(data)
 
@@ -104,9 +78,9 @@ func (data model_insertUpdateAffiliateLeadDetails) Service_insertUpdateAffiliate
 	}
 	defer rows.Close()
 
-	ret := h.RenderData(rows)
+	ret := helpers.RenderData(rows)
 
-	var response = h.JsonResponse{Error: false, Data: ret}
+	var response = helpers.JsonResponse{Error: false, Data: ret}
 
 	return response
 
