@@ -2,8 +2,6 @@ package finance
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 	"posp_api_go_v2/src/helpers"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
@@ -20,17 +18,12 @@ import (
 // @Success 200 {object} helpers.JsonResponse
 // @Router /listFinancialGoalsQuotes [post]
 func ListFinancialGoalsQuotes(c *gin.Context) {
-
+	helpers.Deferring()
 	var requestBody interface{}
 	var response helpers.JsonResponse
-	// var response string
 
 	err := c.BindJSON(&requestBody)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
+	helpers.CheckErr(err)
 	response = Service_listFinancialGoalsQuotes(requestBody)
 
 	c.JSON(200, response)
@@ -38,10 +31,11 @@ func ListFinancialGoalsQuotes(c *gin.Context) {
 }
 
 func Service_listFinancialGoalsQuotes(requestBody interface{}) helpers.JsonResponse {
-
+	helpers.Deferring()
 	fmt.Println("nested data")
 	fmt.Println(requestBody)
 	db := lib.InitialMigration()
+	defer db.Close()
 
 	// Use a type assertion to convert the interface to a map[string]interface{}
 	requestMap, ok := requestBody.(map[string]interface{})
@@ -53,10 +47,7 @@ func Service_listFinancialGoalsQuotes(requestBody interface{}) helpers.JsonRespo
 
 	tsql := fmt.Sprint("EXEC [finance].[ListFinancialGoalsQuotes] @GoalId=?")
 	rows, err := db.Query(tsql, GoalId)
-
-	if err != nil {
-		log.Fatal(err)
-	}
+	helpers.CheckErr(err)
 	defer rows.Close()
 
 	ret := helpers.RenderData(rows)

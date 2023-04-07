@@ -2,8 +2,6 @@ package finance
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 	"posp_api_go_v2/src/helpers"
 
 	lib "github.com/amitg6062/golang-posp-dbconnection"
@@ -31,16 +29,13 @@ type FilterDetailsResponse struct {
 // @Success 200 {object} helpers.JsonResponse
 // @Router /getQuotesFilterDetails [post]
 func GetQuotesFilterDetailsHandler(c *gin.Context) {
-
+	helpers.Deferring()
 	var requestBody interface{}
 	var response helpers.JsonResponse
 	// var response string
 
 	err := c.BindJSON(&requestBody)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+	helpers.CheckErr(err)
 
 	response = Service_getQuotesFilterDetailsHandler(requestBody)
 
@@ -49,14 +44,15 @@ func GetQuotesFilterDetailsHandler(c *gin.Context) {
 }
 
 func Service_getQuotesFilterDetailsHandler(requestBody interface{}) helpers.JsonResponse {
+	helpers.Deferring()
 
-	fmt.Println("nested data")
-	fmt.Println(requestBody)
 	db := lib.InitialMigration()
+	defer db.Close()
 
 	// Use a type assertion to convert the interface to a map[string]interface{}
 	requestMap, ok := requestBody.(map[string]interface{})
 	if !ok {
+		panic("Interface Not Created!!")
 	}
 
 	GoalId := requestMap["GoalId"]
@@ -64,9 +60,7 @@ func Service_getQuotesFilterDetailsHandler(requestBody interface{}) helpers.Json
 	tsql := fmt.Sprint("EXEC [finance].[QuotesFilterDetails] @GoalId=?")
 	rows, err := db.Query(tsql, GoalId)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	helpers.CheckErr(err)
 	defer rows.Close()
 
 	ret := helpers.RenderData(rows)

@@ -2,20 +2,9 @@ package helpers
 
 import (
 	"database/sql"
-	"log"
+	"fmt"
 	"strings"
 )
-
-type User struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-}
-
-// type JsonResponse struct {
-// 	Type    string `json:"type"`
-// 	Data    []Emp  `json:"data"`
-// 	Message string `json:"message"`
-// }
 
 type Emp struct {
 	Id       int    `json:"id"`
@@ -28,37 +17,6 @@ type JsonResponse struct {
 	Data    []map[string]interface{} `json:"data"`
 	Message string                   `json:"message"`
 }
-
-func RenderData(rows *sql.Rows) []map[string]interface{} {
-	var err error
-	cols, _ := rows.Columns()
-	ret := make([]map[string]interface{}, 0)
-	for rows.Next() {
-		colVals := make([]interface{}, len(cols))
-		for i := range colVals {
-			colVals[i] = new(interface{})
-		}
-		err = rows.Scan(colVals...)
-		if err != nil {
-			log.Fatal(err)
-		}
-		colNames, err := rows.Columns()
-		if err != nil {
-			log.Fatal(err)
-		}
-		these := make(map[string]interface{})
-		for idx, name := range colNames {
-			these[name] = *colVals[idx].(*interface{})
-		}
-		ret = append(ret, these)
-	}
-	if err = rows.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return ret
-}
-
-//Response is used to static shape json return
 
 type Response struct {
 	Status  bool        `json:"status"`
@@ -94,6 +52,40 @@ func BuildErrorResponse(message string, err string, data interface{}) Response {
 	return res
 }
 
+//Function to get data from db.
+func RenderData(rows *sql.Rows) []map[string]interface{} {
+	var err error
+	cols, _ := rows.Columns()
+	ret := make([]map[string]interface{}, 0)
+	for rows.Next() {
+		colVals := make([]interface{}, len(cols))
+		for i := range colVals {
+			colVals[i] = new(interface{})
+		}
+		err = rows.Scan(colVals...)
+		CheckErr(err)
+		colNames, err := rows.Columns()
+		CheckErr(err)
+		these := make(map[string]interface{})
+		for idx, name := range colNames {
+			these[name] = *colVals[idx].(*interface{})
+		}
+		ret = append(ret, these)
+	}
+	if err = rows.Err(); err != nil {
+		CheckErr(err)
+	}
+	return ret
+}
+
+//Function to handle Panic
+func Deferring() {
+	if err := recover(); err != nil {
+		fmt.Println("An error occurred:", err)
+	}
+}
+
+// Function for handling errors
 func CheckErr(err error) {
 	if err != nil {
 		panic(err)

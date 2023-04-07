@@ -2,7 +2,6 @@ package dbo
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"posp_api_go_v2/src/helpers"
@@ -92,9 +91,11 @@ type model_insertUpdateAffiliateLeadDetails struct {
 // @Success 200 {object} helpers.JsonResponse "Success"
 // @Router /lead/insertUpdateAffiliateLeadDetails [post]
 func InsertUpdateAffiliateLeadDetails(c *gin.Context) {
+	helpers.Deferring()
 
 	var modelstruct model_insertUpdateAffiliateLeadDetails
 	errDto := c.ShouldBind(&modelstruct)
+
 	if errDto != nil {
 		res := helpers.BuildErrorResponse("faild to process request", errDto.Error(), helpers.EmptyObj{})
 		c.JSON(http.StatusBadRequest, res)
@@ -109,15 +110,16 @@ func InsertUpdateAffiliateLeadDetails(c *gin.Context) {
 }
 
 func (data model_insertUpdateAffiliateLeadDetails) Service_insertUpdateAffiliateLeadDetails() helpers.JsonResponse {
+	helpers.Deferring()
 	db := lib.InitialMigration()
+	defer db.Close()
+
 	fmt.Println(data)
 
 	tsql := fmt.Sprint("EXEC dbo.InsertUpdateAffiliateLeadDetails @LeadID=?, @SessionID=?, @Name=?, @PosType=?, @ProductID = 180")
 	rows, err := db.Query(tsql, data.LeadID, data.SessionID, data.Name, data.PosType)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	helpers.CheckErr(err)
 	defer rows.Close()
 
 	ret := helpers.RenderData(rows)
