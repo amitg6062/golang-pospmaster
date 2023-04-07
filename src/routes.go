@@ -26,11 +26,6 @@ func setupRouter() *gin.Engine {
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	// Ping test
-	r.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
-	})
-
 	r.POST("/lead/insertUpdateAffiliateLeadDetails", dbo.InsertUpdateAffiliateLeadDetails)
 
 	r.POST("/getQuotesFilterDetails", finance.GetQuotesFilterDetailsHandler)
