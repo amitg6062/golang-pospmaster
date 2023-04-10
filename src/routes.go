@@ -26,8 +26,11 @@ func setupRouter() *gin.Engine {
 	route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	route.POST("/lead/insertUpdateAffiliateLeadDetails", dbo.InsertUpdateAffiliateLeadDetails)
+	route.GET("/getDistributionByAssociationTypeId/:AssociationTypeId/:IsActive", dbo.GetDistributionByAssociationTypeId)
 
 	route.POST("/getQuotesFilterDetails", finance.GetQuotesFilterDetailsHandler)
+	route.GET("/getstate", dbo.GetStateMaster)
+	route.GET("/getcity/:StateId", dbo.GetCityByStateId)
 
 	route.POST("/listFinancialGoalsQuotes", finance.ListFinancialGoalsQuotes)
 
